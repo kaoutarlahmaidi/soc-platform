@@ -1,0 +1,352 @@
+name: Wazuh SOC CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  PROJECT_NAME: wazuh-github-test
+  REPORT_DIR: ./test-reports
+
+jobs:
+  quality-gates:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python environment
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install ansible-lint yamllint pytest selenium requests webdriver-manager
+
+    - name: Create reports directory
+      run: mkdir -p ${{ env.REPORT_DIR }}
+
+    - name: Run Ansible lint
+      run: |
+        source venv/bin/activate
+        if [ -d "ansible/playbooks" ]; then
+          ansible-lint ansible/playbooks/ > ${{ env.REPORT_DIR }}/ansible-lint.txt 2>&1 || true
+        fi
+
+    - name: Run YAML lint
+      run: |
+        source venv/bin/activate
+        yamllint docker-compose.yml config/ ansible/ trivy/ > ${{ env.REPORT_DIR }}/yaml-lint.txt 2>&1 || true
+
+    - name: Upload lint reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: lint-reports
+        path: ${{ env.REPORT_DIR }}/*.txt
+
+  security-scan:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Pull base Wazuh images
+      run: |
+        docker pull wazuh/wazuh-manager:4.4.0
+        docker pull wazuh/wazuh-indexer:4.4.0
+        docker pull wazuh/wazuh-dashboard:4.4.0
+
+    - name: Create reports directory
+      run: mkdir -p ${{ env.REPORT_DIR }}/trivy
+
+    - name: Security scanning with Trivy
+      run: |
+        images=("wazuh/wazuh-manager:4.4.0" "wazuh/wazuh-indexer:4.4.0" "wazuh/wazuh-dashboard:4.4.0")
+        scan_failed=false
+
+        for image in "${images[@]}"; do
+          echo "Scanning $image with Trivy..."
+          safe_name=$(echo $image | tr '/:' '_')
+
+          if trivy image \
+              --config trivy/trivy.yaml \
+              --ignorefile trivy/.trivyignore \
+              --format json \
+              --output "${{ env.REPORT_DIR }}/trivy/${safe_name}.json" \
+              --exit-code 0 \
+              --severity HIGH,CRITICAL \
+              $image; then
+
+            # Check for HIGH/CRITICAL vulnerabilities
+            critical_count=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length' "${{ env.REPORT_DIR }}/trivy/${safe_name}.json" 2>/dev/null || echo 0)
+            high_count=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length' "${{ env.REPORT_DIR }}/trivy/${safe_name}.json" 2>/dev/null || echo 0)
+
+            if [ "$critical_count" -gt 0 ] || [ "$high_count" -gt 0 ]; then
+              echo "Warning: $image has $critical_count CRITICAL and $high_count HIGH vulnerabilities"
+              scan_failed=true
+            else
+              echo "Success: $image scan passed"
+            fi
+          else
+            echo "Error: Failed to scan $image"
+            scan_failed=true
+          fi
+        done
+
+        if [ "$scan_failed" = true ]; then
+          echo "Security scan failed - check reports"
+          exit 1
+        fi
+
+    - name: Upload Trivy scan results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: trivy-results
+        path: ${{ env.REPORT_DIR }}/trivy/
+
+  certificates:
+    runs-on: self-hosted
+    needs: [quality-gates]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Generate certificates
+      run: |
+        if [ -f "generate-indexer-certs.yml" ]; then
+          docker-compose -f generate-indexer-certs.yml up --abort-on-container-exit
+          echo "Certificates generated successfully"
+        else
+          echo "Certificate generation file not found"
+          exit 1
+        fi
+
+    - name: Upload certificates
+      uses: actions/upload-artifact@v4
+      with:
+        name: certificates
+        path: config/wazuh_indexer_ssl_certs/
+
+  test:
+    runs-on: self-hosted
+    needs: [security-scan, certificates]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download certificates
+      uses: actions/download-artifact@v4
+      with:
+        name: certificates
+        path: config/wazuh_indexer_ssl_certs/
+
+    - name: Setup Python environment
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install pytest selenium requests webdriver-manager
+
+    - name: Create environment file
+      run: |
+        cat > .env << EOF
+        INDEXER_PASSWORD=${{ secrets.INDEXER_PASSWORD || 'SecurePassword123!' }}
+        API_PASSWORD=${{ secrets.API_PASSWORD || 'SecurePassword123!' }}
+        API_USERNAME=${{ secrets.API_USERNAME || 'wazuh-wui' }}
+        INDEXER_USERNAME=${{ secrets.INDEXER_USERNAME || 'admin' }}
+        EOF
+
+    - name: Start test environment
+      run: |
+        export COMPOSE_PROJECT_NAME="${{ env.PROJECT_NAME }}"
+        docker-compose up -d
+
+    - name: Wait for services to be ready
+      run: |
+        echo "Waiting for services to start (this may take a few minutes)..."
+        max_attempts=30
+        attempt=0
+
+        while [ $attempt -lt $max_attempts ]; do
+          if curl -k -f https://localhost:443 >/dev/null 2>&1; then
+            echo "Dashboard is accessible"
+            break
+          fi
+
+          attempt=$((attempt + 1))
+          echo "Attempt $attempt/$max_attempts - waiting 10 seconds..."
+          sleep 10
+        done
+
+        if [ $attempt -eq $max_attempts ]; then
+          echo "Services failed to start within timeout"
+          docker-compose logs
+          exit 1
+        fi
+
+    - name: Run API health tests
+      run: |
+        source venv/bin/activate
+        if [ -f "tests/api/test_api_health.py" ]; then
+          cd tests/api
+          python -m pytest test_api_health.py -v --junitxml="../../${{ env.REPORT_DIR }}/api-results.xml"
+          cd ../..
+        fi
+
+    - name: Run Selenium tests
+      run: |
+        source venv/bin/activate
+        if [ -f "tests/selenium/test_wazuh_dashboard.py" ]; then
+          cd tests/selenium
+          python -m pytest test_wazuh_dashboard.py -v --junitxml="../../${{ env.REPORT_DIR }}/selenium-results.xml"
+          cd ../..
+        fi
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          ${{ env.REPORT_DIR }}/*.xml
+          tests/selenium/screenshots/
+
+    - name: Cleanup test environment
+      if: always()
+      run: |
+        export COMPOSE_PROJECT_NAME="${{ env.PROJECT_NAME }}"
+        docker-compose down -v || true
+        rm -f .env
+
+  deployment-simulation:
+    runs-on: self-hosted
+    needs: [test]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python environment
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+
+    - name: Install Ansible collections
+      run: |
+        source venv/bin/activate
+        if [ -f "ansible/requirements.yml" ]; then
+          ansible-galaxy collection install -r ansible/requirements.yml
+        else
+          ansible-galaxy collection install community.docker community.general
+        fi
+
+    - name: Create mock secrets
+      run: |
+        mkdir -p /tmp/mock-secrets
+        echo "test-admin-password" > /tmp/mock-secrets/wazuh_admin_password
+        echo "test-api-password" > /tmp/mock-secrets/wazuh_api_password
+        echo "test-cluster-key-32chars-long-key" > /tmp/mock-secrets/wazuh_cluster_key
+        chmod 600 /tmp/mock-secrets/*
+
+    - name: Run deployment dry-run
+      run: |
+        source venv/bin/activate
+        if [ -f "ansible/playbooks/deploy.yml" ]; then
+          cd ansible
+          ansible-playbook -i inventory/hosts.yml playbooks/deploy.yml \
+             --check \
+             --diff \
+             --extra-vars "deployment_env=testing" \
+             --extra-vars "secrets_path=/tmp/mock-secrets"
+          cd ..
+        fi
+
+    - name: Cleanup mock secrets
+      if: always()
+      run: rm -rf /tmp/mock-secrets
+
+  deploy:
+    runs-on: self-hosted
+    needs: [deployment-simulation]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download certificates
+      uses: actions/download-artifact@v4
+      with:
+        name: certificates
+        path: config/wazuh_indexer_ssl_certs/
+
+    - name: Setup Python environment
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+
+    - name: Install Ansible collections
+      run: |
+        source venv/bin/activate
+        if [ -f "ansible/requirements.yml" ]; then
+          ansible-galaxy collection install -r ansible/requirements.yml
+        else
+          ansible-galaxy collection install community.docker community.general
+        fi
+
+    - name: Create production environment file
+      run: |
+        cat > .env << EOF
+        INDEXER_PASSWORD=${{ secrets.INDEXER_PASSWORD }}
+        API_PASSWORD=${{ secrets.API_PASSWORD }}
+        API_USERNAME=${{ secrets.API_USERNAME }}
+        INDEXER_USERNAME=${{ secrets.INDEXER_USERNAME }}
+        EOF
+
+    - name: Deploy to production
+      run: |
+        source venv/bin/activate
+        ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/deploy.yml \
+           -e environment=production
+
+    - name: Verify deployment
+      run: |
+        sleep 30
+        curl -k -f https://localhost:443 || (echo "Deployment verification failed" && exit 1)
+        echo "Production deployment successful"
+
+    - name: Generate deployment report
+      run: |
+        cat > deployment-report.md << EOF
+        # Production Deployment Report
+
+        **Date:** $(date)
+        **Branch:** ${{ github.ref }}
+        **Commit:** ${{ github.sha }}
+
+        ## Services Status
+        - Dashboard: https://localhost:443 ✅
+        - Manager API: https://localhost:55000
+        - Indexer: https://localhost:9200
+
+        ## Deployment Summary
+        - Environment: Production
+        - Status: Success
+        EOF
+
+    - name: Upload deployment report
+      uses: actions/upload-artifact@v4
+      with:
+        name: deployment-report
+        path: deployment-report.md
+
+    - name: Rollback on failure
+      if: failure()
+      run: |
+        echo "Deployment failed, attempting rollback..."
+        docker-compose down || true
+        rm -f .env

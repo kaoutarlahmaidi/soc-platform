@@ -1,0 +1,945 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-08-29T21:16:59.87933756+01:00",
+  "ArtifactName": "wazuh/wazuh-manager:4.4.0",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 734602752,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "20.04",
+      "EOSL": true
+    },
+    "ImageID": "sha256:fa3e35ccf45554ecc1b4629bc16d27203e594d3fb947c1a62d910a1929396287",
+    "DiffIDs": [
+      "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+      "sha256:bf8cb5be42bc6ce69761c2ca9d56bd42b88e96ad46167394c8a06f53535ca06e",
+      "sha256:073fcf954cdac978227046acd9f042d9be514fa709a13c34918a169bda6a54b8",
+      "sha256:337b1a81832fb546d5c07664dff9fdc4ca5c04bf10514e8bc8efb6cebe66326b",
+      "sha256:409d73d97c9f8db290ddf3f7baaf07389f84ec3ad46c16a28ae13f4d2849183e",
+      "sha256:90fd2de676da67ccf1386c1ab989558bdc6e2f929bdf1207d46b22c703af3f7b",
+      "sha256:c0be3cb94e7b9876e803086dece44e75fa341e6c06e81d82f40e6b6000c11e9c",
+      "sha256:a1d0904ca42774964b24e4e802095df776ced3bbedd9970b53b81f581041bad0",
+      "sha256:10d63ef6820812e1786f519799cb97f5de0b3e08bc8277c3778654da3436885e",
+      "sha256:d5b9227bfc1070d31386d93e7b82b7a7948e2c1706767ddd2b90d55e9cbf4876",
+      "sha256:069a7d737a2b33370761d9d6991c01c0ad8239f77e725735c01c2c695a407c97",
+      "sha256:7fd8ba209dce46753b9e2e1902ffe23a0e34954eea03f187d2187e1e24fbfa16",
+      "sha256:299d240be291cd977bef9f861b4f0656c5d4ecb3a86c25fb1af14100d7c91275",
+      "sha256:6da01966d1541f25d70cb89f69cc55b2e5fdbe3ec8a64b7f44c9759050475440",
+      "sha256:a9d45be18e2a00bf6c3a9f1def929f0fa65a2d5695b6d3d1612e67c411c1019d",
+      "sha256:9f5da281c18943dee3a84f8d13e1ed3bce300013bc4cf01cf16963492746e8c2",
+      "sha256:b92992d9f5dee698b890bc40b44968cc182c19557088b71270da277755cb1072",
+      "sha256:7d63e53f5d9c55620e91b538061d9c33c659446be8dff4844ab467850dba307b"
+    ],
+    "RepoTags": [
+      "wazuh/wazuh-manager:4.4.0"
+    ],
+    "RepoDigests": [
+      "wazuh/wazuh-manager@sha256:3b202806136ce95bb2087eb5597c06862d99e2be9e87d48c9a7008c12f23432f"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2023-04-05T17:58:59.552898913Z",
+      "docker_version": "20.10.21",
+      "history": [
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  ARG RELEASE",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.ref.name=ubuntu",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.version=20.04",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:26Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:20f2ff22b9a8ca9bec5178036c9ebc525a12cd4312daf5d14a9a631a30be20e1 in / "
+        },
+        {
+          "created": "2023-03-08T04:41:27Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:47Z",
+          "created_by": "/bin/sh -c rm /bin/sh \u0026\u0026 ln -s /bin/bash /bin/sh"
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG WAZUH_VERSION",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG WAZUH_TAG_REVISION",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG TEMPLATE_VERSION=4.4",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG FILEBEAT_CHANNEL=filebeat-oss",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG FILEBEAT_VERSION=7.10.2",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:57:48Z",
+          "created_by": "/bin/sh -c #(nop)  ARG WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:58:16Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c apt-get update \u0026\u0026 apt install curl apt-transport-https lsb-release gnupg -y"
+        },
+        {
+          "created": "2023-04-05T17:58:16Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:31e603ad5ee8e19e4b54ddac6ea396efbca3833c8da0ad3194dc335ce1d0fc94 in / "
+        },
+        {
+          "created": "2023-04-05T17:58:17Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c chmod 775 /check_repository.sh"
+        },
+        {
+          "created": "2023-04-05T17:58:18Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c source /check_repository.sh"
+        },
+        {
+          "created": "2023-04-05T17:58:46Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c apt-get update \u0026\u0026     apt-get install wazuh-manager=${WAZUH_VERSION}-${WAZUH_TAG_REVISION}"
+        },
+        {
+          "created": "2023-04-05T17:58:52Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb \u0026\u0026    dpkg -i ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb \u0026\u0026 rm -f ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb \u0026\u0026     curl -s https://packages.wazuh.com/4.x/filebeat/${WAZUH_FILEBEAT_MODULE} | tar -xvz -C /usr/share/filebeat/module"
+        },
+        {
+          "created": "2023-04-05T17:58:55Z",
+          "created_by": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c curl -L https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-amd64 -o /usr/local/bin/goss \u0026\u0026 chmod +rx /usr/local/bin/goss"
+        },
+        {
+          "created": "2023-04-05T17:58:55Z",
+          "created_by": "/bin/sh -c #(nop)  ARG S6_VERSION=v2.2.0.3",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:58:57Z",
+          "created_by": "|7 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 S6_VERSION=v2.2.0.3 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-amd64.tar.gz     -o /tmp/s6-overlay-amd64.tar.gz \u0026\u0026     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude=\"./bin\" \u0026\u0026     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin \u0026\u0026     rm  /tmp/s6-overlay-amd64.tar.gz"
+        },
+        {
+          "created": "2023-04-05T17:58:57Z",
+          "created_by": "/bin/sh -c #(nop) COPY dir:0931760e0bbd063a2b1a3b8e864d7adbf82987010363d2a497429e2b06dcfc73 in /etc/ "
+        },
+        {
+          "created": "2023-04-05T17:58:57Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=root:wazuhfile:fc490095c5453dd61bd66b9b966b2f5f8a33d1c215a705358a19ca53204cb855 in /var/ossec/framework/scripts/create_user.py "
+        },
+        {
+          "created": "2023-04-05T17:58:57Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:f07904a2cee0a1d3fea9d5d18b579fc73e936e757ea01d2c47e267190c3adcca in /etc/filebeat/ "
+        },
+        {
+          "created": "2023-04-05T17:58:57Z",
+          "created_by": "|7 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 S6_VERSION=v2.2.0.3 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c chmod go-w /etc/filebeat/filebeat.yml"
+        },
+        {
+          "created": "2023-04-05T17:58:58Z",
+          "created_by": "/bin/sh -c #(nop) ADD 99068e93e222a6047fdd122bb41ede23adcce1bb3dad6faf721d535c3fd0e707 in /etc/filebeat "
+        },
+        {
+          "created": "2023-04-05T17:58:58Z",
+          "created_by": "|7 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 S6_VERSION=v2.2.0.3 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c chmod go-w /etc/filebeat/wazuh-template.json"
+        },
+        {
+          "created": "2023-04-05T17:58:58Z",
+          "created_by": "/bin/sh -c #(nop) COPY multi:22ada81084e2e55b87b2fb4fcd8aabe5e5fe5746beaa0a3013e3e7fd2b1442d9 in / "
+        },
+        {
+          "created": "2023-04-05T17:58:59Z",
+          "created_by": "|7 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 S6_VERSION=v2.2.0.3 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c chmod 755 /permanent_data.sh \u0026\u0026     sync \u0026\u0026 /permanent_data.sh \u0026\u0026     sync \u0026\u0026 rm /permanent_data.sh"
+        },
+        {
+          "created": "2023-04-05T17:58:59Z",
+          "created_by": "/bin/sh -c #(nop)  EXPOSE 1514/tcp 1515/tcp 1516/tcp 514/udp 55000/tcp",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T17:58:59Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/init\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+          "sha256:bf8cb5be42bc6ce69761c2ca9d56bd42b88e96ad46167394c8a06f53535ca06e",
+          "sha256:073fcf954cdac978227046acd9f042d9be514fa709a13c34918a169bda6a54b8",
+          "sha256:337b1a81832fb546d5c07664dff9fdc4ca5c04bf10514e8bc8efb6cebe66326b",
+          "sha256:409d73d97c9f8db290ddf3f7baaf07389f84ec3ad46c16a28ae13f4d2849183e",
+          "sha256:90fd2de676da67ccf1386c1ab989558bdc6e2f929bdf1207d46b22c703af3f7b",
+          "sha256:c0be3cb94e7b9876e803086dece44e75fa341e6c06e81d82f40e6b6000c11e9c",
+          "sha256:a1d0904ca42774964b24e4e802095df776ced3bbedd9970b53b81f581041bad0",
+          "sha256:10d63ef6820812e1786f519799cb97f5de0b3e08bc8277c3778654da3436885e",
+          "sha256:d5b9227bfc1070d31386d93e7b82b7a7948e2c1706767ddd2b90d55e9cbf4876",
+          "sha256:069a7d737a2b33370761d9d6991c01c0ad8239f77e725735c01c2c695a407c97",
+          "sha256:7fd8ba209dce46753b9e2e1902ffe23a0e34954eea03f187d2187e1e24fbfa16",
+          "sha256:299d240be291cd977bef9f861b4f0656c5d4ecb3a86c25fb1af14100d7c91275",
+          "sha256:6da01966d1541f25d70cb89f69cc55b2e5fdbe3ec8a64b7f44c9759050475440",
+          "sha256:a9d45be18e2a00bf6c3a9f1def929f0fa65a2d5695b6d3d1612e67c411c1019d",
+          "sha256:9f5da281c18943dee3a84f8d13e1ed3bce300013bc4cf01cf16963492746e8c2",
+          "sha256:b92992d9f5dee698b890bc40b44968cc182c19557088b71270da277755cb1072",
+          "sha256:7d63e53f5d9c55620e91b538061d9c33c659446be8dff4844ab467850dba307b"
+        ]
+      },
+      "config": {
+        "Entrypoint": [
+          "/init"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Labels": {
+          "org.opencontainers.image.ref.name": "ubuntu",
+          "org.opencontainers.image.version": "20.04"
+        },
+        "ExposedPorts": {
+          "1514/tcp": {},
+          "1515/tcp": {},
+          "1516/tcp": {},
+          "514/udp": {},
+          "55000/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 75160576,
+        "Digest": "sha256:06d39c85623a79eb68b6cac39f4c4aba8834873ee5fc27be9d9d7655e6313c26",
+        "DiffID": "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f"
+      },
+      {
+        "Size": 2560,
+        "Digest": "sha256:c773bf587be28ce460b3cf2baf3b7440a7c63064df23d6b7fbb96d7491fee4dd",
+        "DiffID": "sha256:bf8cb5be42bc6ce69761c2ca9d56bd42b88e96ad46167394c8a06f53535ca06e"
+      },
+      {
+        "Size": 98844160,
+        "Digest": "sha256:3a8e6010cd6ef87c58686af1662a27abb49dfc47a24f262c21bb9feac12babdb",
+        "DiffID": "sha256:073fcf954cdac978227046acd9f042d9be514fa709a13c34918a169bda6a54b8"
+      },
+      {
+        "Size": 3072,
+        "Digest": "sha256:7853b82043efc7676cc8cd5784e22588372ed698f446e7779bcfba9b8f2d7e4b",
+        "DiffID": "sha256:337b1a81832fb546d5c07664dff9fdc4ca5c04bf10514e8bc8efb6cebe66326b"
+      },
+      {
+        "Size": 3072,
+        "Digest": "sha256:6b4dd6a2400f41cfc261f5203f0915be4fc6f91065f2e81198c58214c3deed3c",
+        "DiffID": "sha256:409d73d97c9f8db290ddf3f7baaf07389f84ec3ad46c16a28ae13f4d2849183e"
+      },
+      {
+        "Size": 7680,
+        "Digest": "sha256:53403f59be027f0aaed9ffbfd62e488d5d1fda05a5303d6e95bce4423a2b3760",
+        "DiffID": "sha256:90fd2de676da67ccf1386c1ab989558bdc6e2f929bdf1207d46b22c703af3f7b"
+      },
+      {
+        "Size": 464151552,
+        "Digest": "sha256:30fe720bb31492758c0815ad5dc72036da07af6a259765acfbf2d98bf5965a24",
+        "DiffID": "sha256:c0be3cb94e7b9876e803086dece44e75fa341e6c06e81d82f40e6b6000c11e9c"
+      },
+      {
+        "Size": 74403840,
+        "Digest": "sha256:9bebb321b80edc9eda88ebb049066c89528d7567d98a40b363c00790dc8f3434",
+        "DiffID": "sha256:a1d0904ca42774964b24e4e802095df776ced3bbedd9970b53b81f581041bad0"
+      },
+      {
+        "Size": 13540352,
+        "Digest": "sha256:29f6b3131c50d143f8047a42c7659f0febb4eed8c48d1cd23318e5a5bced2795",
+        "DiffID": "sha256:10d63ef6820812e1786f519799cb97f5de0b3e08bc8277c3778654da3436885e"
+      },
+      {
+        "Size": 5284864,
+        "Digest": "sha256:a397c2e15ad6811a58ec04954cbe6377bb77fff3a38b49f75dbef5214d70c098",
+        "DiffID": "sha256:d5b9227bfc1070d31386d93e7b82b7a7948e2c1706767ddd2b90d55e9cbf4876"
+      },
+      {
+        "Size": 22528,
+        "Digest": "sha256:3444fa16807519ab067513beded76bd710b15cd8abc11c97ba9dfb17459ac8d8",
+        "DiffID": "sha256:069a7d737a2b33370761d9d6991c01c0ad8239f77e725735c01c2c695a407c97"
+      },
+      {
+        "Size": 6656,
+        "Digest": "sha256:c2dac1506e981933a9eb67ccb642275252730364576c5e4238fd463aa6df3b46",
+        "DiffID": "sha256:7fd8ba209dce46753b9e2e1902ffe23a0e34954eea03f187d2187e1e24fbfa16"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:ddcd22373c6c7a07e80a325b741533cd0642c711b974f5c039a3c9458aebdb6f",
+        "DiffID": "sha256:299d240be291cd977bef9f861b4f0656c5d4ecb3a86c25fb1af14100d7c91275"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:a6d7c60747683f101f7dc6cbe9362a71d6eee1550e81cda9bbe7acc0309f5adf",
+        "DiffID": "sha256:6da01966d1541f25d70cb89f69cc55b2e5fdbe3ec8a64b7f44c9759050475440"
+      },
+      {
+        "Size": 61440,
+        "Digest": "sha256:b0f8c0f9c5be27761c4f53bb7337fd7c56c6e214af33b01144bea8696b4de45a",
+        "DiffID": "sha256:a9d45be18e2a00bf6c3a9f1def929f0fa65a2d5695b6d3d1612e67c411c1019d"
+      },
+      {
+        "Size": 61440,
+        "Digest": "sha256:e5c516e33ba42b59f5017c2bcffae0c18a87e614a2574b3bb09c3582061633f9",
+        "DiffID": "sha256:9f5da281c18943dee3a84f8d13e1ed3bce300013bc4cf01cf16963492746e8c2"
+      },
+      {
+        "Size": 7680,
+        "Digest": "sha256:a789a3a517e8e6d25595f0e344289d30612c1e1fa5c2bc275a8997aabc7b9ade",
+        "DiffID": "sha256:b92992d9f5dee698b890bc40b44968cc182c19557088b71270da277755cb1072"
+      },
+      {
+        "Size": 3034112,
+        "Digest": "sha256:81770daed05ddcb3e1ecd61a0c3d6cdcb8117d49bbdbf8446385346551f816bf",
+        "DiffID": "sha256:7d63e53f5d9c55620e91b538061d9c33c659446be8dff4844ab467850dba307b"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "wazuh/wazuh-manager:4.4.0 (ubuntu 20.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu"
+    },
+    {
+      "Target": "usr/local/bin/goss",
+      "Class": "lang-pkgs",
+      "Type": "gobinary"
+    },
+    {
+      "Target": "/var/ossec/data_tmp/permanent/var/ossec/etc/sslmanager.key",
+      "Class": "secret",
+      "Secrets": [
+        {
+          "RuleID": "private-key",
+          "Category": "AsymmetricPrivateKey",
+          "Severity": "HIGH",
+          "Title": "Asymmetric Private Key",
+          "StartLine": 2,
+          "EndLine": 27,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "-----BEGIN PRIVATE KEY-----",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "-----BEGIN PRIVATE KEY-----",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 2,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": true,
+                "LastCause": false
+              },
+              {
+                "Number": 3,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 4,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 5,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 6,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 7,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 8,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 9,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 10,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 11,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 12,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 13,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 14,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 15,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 16,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 17,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 18,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 19,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 20,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 21,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 22,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 23,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 24,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 25,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 26,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 27,
+                "Content": "************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "************************",
+                "FirstCause": false,
+                "LastCause": true
+              },
+              {
+                "Number": 28,
+                "Content": "-----END PRIVATE KEY-----",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "-----END PRIVATE KEY-----",
+                "FirstCause": false,
+                "LastCause": false
+              }
+            ]
+          },
+          "Match": "****************************************************************",
+          "Layer": {
+            "Digest": "sha256:81770daed05ddcb3e1ecd61a0c3d6cdcb8117d49bbdbf8446385346551f816bf",
+            "DiffID": "sha256:7d63e53f5d9c55620e91b538061d9c33c659446be8dff4844ab467850dba307b",
+            "CreatedBy": "|7 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 S6_VERSION=v2.2.0.3 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c chmod 755 /permanent_data.sh \u0026\u0026     sync \u0026\u0026 /permanent_data.sh \u0026\u0026     sync \u0026\u0026 rm /permanent_data.sh"
+          }
+        }
+      ]
+    },
+    {
+      "Target": "/var/ossec/etc/sslmanager.key",
+      "Class": "secret",
+      "Secrets": [
+        {
+          "RuleID": "private-key",
+          "Category": "AsymmetricPrivateKey",
+          "Severity": "HIGH",
+          "Title": "Asymmetric Private Key",
+          "StartLine": 2,
+          "EndLine": 27,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "-----BEGIN PRIVATE KEY-----",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "-----BEGIN PRIVATE KEY-----",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 2,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": true,
+                "LastCause": false
+              },
+              {
+                "Number": 3,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 4,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 5,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 6,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 7,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 8,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 9,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 10,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 11,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 12,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 13,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 14,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 15,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 16,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 17,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 18,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 19,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 20,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 21,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 22,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 23,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 24,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 25,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 26,
+                "Content": "****************************************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "****************************************************************",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 27,
+                "Content": "************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "************************",
+                "FirstCause": false,
+                "LastCause": true
+              },
+              {
+                "Number": 28,
+                "Content": "-----END PRIVATE KEY-----",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "-----END PRIVATE KEY-----",
+                "FirstCause": false,
+                "LastCause": false
+              }
+            ]
+          },
+          "Match": "****************************************************************",
+          "Layer": {
+            "Digest": "sha256:30fe720bb31492758c0815ad5dc72036da07af6a259765acfbf2d98bf5965a24",
+            "DiffID": "sha256:c0be3cb94e7b9876e803086dece44e75fa341e6c06e81d82f40e6b6000c11e9c",
+            "CreatedBy": "|6 FILEBEAT_CHANNEL=filebeat-oss FILEBEAT_VERSION=7.10.2 TEMPLATE_VERSION=4.4 WAZUH_FILEBEAT_MODULE=wazuh-filebeat-0.2.tar.gz WAZUH_TAG_REVISION=1 WAZUH_VERSION=4.4.0 /bin/sh -c apt-get update \u0026\u0026     apt-get install wazuh-manager=${WAZUH_VERSION}-${WAZUH_TAG_REVISION}"
+          }
+        }
+      ]
+    }
+  ]
+}

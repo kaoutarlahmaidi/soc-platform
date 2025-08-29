@@ -1,0 +1,92 @@
+[2mWARNING  Listing 27 violation(s) that are fatal[0m
+Read [34m]8;;https://ansible.readthedocs.io/projects/lint/configuring/#ignoring-rules-for-entire-files\documentation]8;;\[0m for instructions on how to ignore specific rule violations.
+
+# Rule Violation Summary
+
+  8 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\yaml]8;;\[0m [2mprofile:basic tags:formatting,yaml[0m
+  3 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\no-changed-when]8;;\[0m [2mprofile:basic tags:command-shell,idempotency[0m
+ 14 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:basic tags:formatting[0m
+  2 [34m]8;;https://ansible.readthedocs.io/projects/lint/rules/\fqcn]8;;\[0m [2mprofile:basic tags:formatting[0m
+
+[31m[1mFailed[0m[0m: 27 failure(s), 0 warning(s) on 2 files. Last profile that met the validation criteria was 'min'.
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:5
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:6
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (stat).[0m
+[35mansible/playbooks/deploy.yml[0m:13:7 [2mUse `ansible.builtin.stat` or `ansible.legacy.stat` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (fail).[0m
+[35mansible/playbooks/deploy.yml[0m:18:7 [2mUse `ansible.builtin.fail` or `ansible.legacy.fail` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (find).[0m
+[35mansible/playbooks/deploy.yml[0m:23:7 [2mUse `ansible.builtin.find` or `ansible.legacy.find` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/no-changed-when/\no-changed-when]8;;\[0m[2m:[0m [31mCommands should not change things if nothing needs doing.[0m
+[35mansible/playbooks/deploy.yml[0m:27 [2mTask/Handler: Generate certificates if missing[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (command).[0m
+[35mansible/playbooks/deploy.yml[0m:28:7 [2mUse `ansible.builtin.command` or `ansible.legacy.command` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action]]8;;\[0m[2m:[0m [31mUse FQCN for module actions, such `community.docker.docker_compose`.[0m
+[35mansible/playbooks/deploy.yml[0m:34:7 [2mAction `docker_compose` is not FQCN.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action]]8;;\[0m[2m:[0m [31mUse FQCN for module actions, such `community.docker.docker_compose`.[0m
+[35mansible/playbooks/deploy.yml[0m:41:7 [2mAction `docker_compose` is not FQCN.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (pause).[0m
+[35mansible/playbooks/deploy.yml[0m:49:7 [2mUse `ansible.builtin.pause` or `ansible.legacy.pause` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/no-changed-when/\no-changed-when]8;;\[0m[2m:[0m [31mCommands should not change things if nothing needs doing.[0m
+[35mansible/playbooks/deploy.yml[0m:53 [2mTask/Handler: Check service status[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (command).[0m
+[35mansible/playbooks/deploy.yml[0m:54:7 [2mUse `ansible.builtin.command` or `ansible.legacy.command` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (debug).[0m
+[35mansible/playbooks/deploy.yml[0m:61:7 [2mUse `ansible.builtin.debug` or `ansible.legacy.debug` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (uri).[0m
+[35mansible/playbooks/deploy.yml[0m:66:7 [2mUse `ansible.builtin.uri` or `ansible.legacy.uri` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:68
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:71
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (uri).[0m
+[35mansible/playbooks/deploy.yml[0m:75:7 [2mUse `ansible.builtin.uri` or `ansible.legacy.uri` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:77
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:80
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (uri).[0m
+[35mansible/playbooks/deploy.yml[0m:84:7 [2mUse `ansible.builtin.uri` or `ansible.legacy.uri` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:86
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/yaml/\yaml[truthy]]8;;\[0m[2m:[0m [31mTruthy value should be one of [false, true][0m
+[35mansible/playbooks/deploy.yml[0m:89
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (debug).[0m
+[35mansible/playbooks/deploy.yml[0m:93:7 [2mUse `ansible.builtin.debug` or `ansible.legacy.debug` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/no-changed-when/\no-changed-when]8;;\[0m[2m:[0m [31mCommands should not change things if nothing needs doing.[0m
+[35mansible/playbooks/deploy.yml[0m:100 [2mTask/Handler: Show logs[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (command).[0m
+[35mansible/playbooks/deploy.yml[0m:101:7 [2mUse `ansible.builtin.command` or `ansible.legacy.command` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (debug).[0m
+[35mansible/playbooks/deploy.yml[0m:108:7 [2mUse `ansible.builtin.debug` or `ansible.legacy.debug` instead.[0m
+[0m
+[31m[34m]8;;https://ansible.readthedocs.io/projects/lint/rules/fqcn/\fqcn[action-core]]8;;\[0m[2m:[0m [31mUse FQCN for builtin module actions (debug).[0m
+[35mansible/playbooks/deploy.yml[0m:113:7 [2mUse `ansible.builtin.debug` or `ansible.legacy.debug` instead.[0m
+[0m

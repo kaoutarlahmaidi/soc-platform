@@ -1,0 +1,126 @@
+---
+- name: Deploy Wazuh SOC
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: yes
+
+  vars:
+    project_dir: "{{ ansible_env.PWD | regex_replace('/ansible.*', '') }}"
+
+  tasks:
+    - name: Check if docker-compose.yml exists
+      stat:
+        path: "{{ project_dir }}/docker-compose.yml"
+      register: compose_file
+
+    - name: Fail if compose file missing
+      fail:
+        msg: "docker-compose.yml not found at {{ project_dir }}"
+      when: not compose_file.stat.exists
+
+    - name: Check SSL certificates
+      find:
+        paths: "{{ project_dir }}/config/wazuh_indexer_ssl_certs"
+        patterns: "*.pem"
+      register: certs
+    - name: Generate certificates if missing
+      command: docker-compose -f generate-indexer-certs.yml run --rm generator
+      args:
+        chdir: "{{ project_dir }}"
+      when: certs.matched == 0
+
+    - name: Stop services
+      docker_compose:
+        project_src: "{{ project_dir }}"
+        state: absent
+      when: stop_services is defined and stop_services
+      tags: [stop, never]
+
+    - name: Deploy Wazuh services
+      docker_compose:
+        project_src: "{{ project_dir }}"
+        state: present
+        pull: "{{ pull_images | default(false) }}"
+      register: deploy_result
+      tags: [deploy]
+
+    - name: Wait for services
+      pause:
+        seconds: 30
+      tags: [deploy]
+
+    - name: Check service status
+      command: docker-compose ps
+      args:
+        chdir: "{{ project_dir }}"
+      register: status
+      tags: [deploy, status]
+
+    - name: Show status
+      debug:
+        msg: "{{ status.stdout }}"
+      tags: [deploy, status]
+
+    - name: Health check Dashboard
+      uri:
+        url: https://localhost:443
+        validate_certs: no
+        status_code: [200, 302, 401]
+      register: dashboard
+      ignore_errors: yes
+      tags: [health, never]
+
+    - name: Health check Manager
+      uri:
+        url: https://localhost:55000
+        validate_certs: no
+        status_code: [200, 401, 403]
+      register: manager
+      ignore_errors: yes
+      tags: [health, never]
+
+    - name: Health check Indexer
+      uri:
+        url: https://localhost:9200
+        validate_certs: no
+        status_code: [200, 401]
+      register: indexer
+      ignore_errors: yes
+      tags: [health, never]
+
+    - name: Show health results
+      debug:
+        msg: |
+          Dashboard: {{ 'OK' if dashboard.status in [200, 302, 401] else 'FAILED' }}
+          Manager: {{ 'OK' if manager.status in [200, 401, 403] else 'FAILED' }}
+          Indexer: {{ 'OK' if indexer.status in [200, 401] else 'FAILED' }}
+      tags: [health, never]
+
+    - name: Show logs
+      command: docker-compose logs --tail=50 {{ service_name | default('') }}
+      args:
+        chdir: "{{ project_dir }}"
+      register: logs
+      tags: [logs, never]
+
+    - name: Display logs
+      debug:
+        msg: "{{ logs.stdout }}"
+      tags: [logs, never]
+
+    - name: Final status
+      debug:
+        msg: |
+          Deployment complete!
+
+          Access your services:
+          - Dashboard: https://localhost:443
+          - Manager API: https://localhost:55000
+          - Indexer: https://localhost:9200
+
+          Commands:
+          Deploy: ansible-playbook ansible/playbooks/deploy.yml
+          Stop: ansible-playbook ansible/playbooks/deploy.yml --tags stop
+          Health: ansible-playbook ansible/playbooks/deploy.yml --tags health
+          Logs: ansible-playbook ansible/playbooks/deploy.yml --tags logs

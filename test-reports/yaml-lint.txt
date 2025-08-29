@@ -1,0 +1,69 @@
+docker-compose.yml
+  4:1       warning  missing document start "---"  (document-start)
+
+config/certs.yml
+  1:1       warning  missing document start "---"  (document-start)
+
+config/wazuh_dashboard/wazuh.yml
+  1:1       warning  missing document start "---"  (document-start)
+
+config/wazuh_dashboard/opensearch_dashboards.yml
+  1:1       warning  missing document start "---"  (document-start)
+  5:55      error    too few spaces after comma  (commas)
+  11:81     error    line too long (87 > 80 characters)  (line-length)
+
+config/wazuh_indexer/wazuh1.indexer.yml
+  1:1       warning  missing document start "---"  (document-start)
+  15:81     error    line too long (92 > 80 characters)  (line-length)
+  16:81     error    line too long (91 > 80 characters)  (line-length)
+  17:81     error    line too long (91 > 80 characters)  (line-length)
+  18:81     error    line too long (97 > 80 characters)  (line-length)
+  19:81     error    line too long (96 > 80 characters)  (line-length)
+  20:81     error    line too long (96 > 80 characters)  (line-length)
+  25:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  29:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  34:1      error    wrong indentation: expected 8 but found 0  (indentation)
+
+config/wazuh_indexer/wazuh2.indexer.yml
+  1:1       warning  missing document start "---"  (document-start)
+  15:81     error    line too long (92 > 80 characters)  (line-length)
+  16:81     error    line too long (91 > 80 characters)  (line-length)
+  17:81     error    line too long (91 > 80 characters)  (line-length)
+  18:81     error    line too long (97 > 80 characters)  (line-length)
+  19:81     error    line too long (96 > 80 characters)  (line-length)
+  20:81     error    line too long (96 > 80 characters)  (line-length)
+  25:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  29:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  34:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  38:51     error    no new line character at the end of file  (new-line-at-end-of-file)
+
+config/wazuh_indexer/wazuh3.indexer.yml
+  1:1       warning  missing document start "---"  (document-start)
+  15:81     error    line too long (92 > 80 characters)  (line-length)
+  16:81     error    line too long (91 > 80 characters)  (line-length)
+  17:81     error    line too long (91 > 80 characters)  (line-length)
+  18:81     error    line too long (97 > 80 characters)  (line-length)
+  19:81     error    line too long (96 > 80 characters)  (line-length)
+  20:81     error    line too long (96 > 80 characters)  (line-length)
+  25:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  29:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  34:1      error    wrong indentation: expected 8 but found 0  (indentation)
+  38:51     error    no new line character at the end of file  (new-line-at-end-of-file)
+
+ansible/inventory/hosts.yml
+  3:1       error    syntax error: expected '<document start>', but found '<scalar>' (syntax)
+
+ansible/playbooks/deploy.yml
+  5:11      warning  truthy value should be one of [false, true]  (truthy)
+  6:17      warning  truthy value should be one of [false, true]  (truthy)
+  68:25     warning  truthy value should be one of [false, true]  (truthy)
+  71:22     warning  truthy value should be one of [false, true]  (truthy)
+  77:25     warning  truthy value should be one of [false, true]  (truthy)
+  80:22     warning  truthy value should be one of [false, true]  (truthy)
+  86:25     warning  truthy value should be one of [false, true]  (truthy)
+  89:22     warning  truthy value should be one of [false, true]  (truthy)
+  95:81     error    line too long (84 > 80 characters)  (line-length)
+
+trivy/trivy.yaml
+  1:1       warning  missing document start "---"  (document-start)
+

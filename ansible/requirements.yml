@@ -1,0 +1,8 @@
+---
+collections:
+  - name: community.docker
+    version: ">=3.0.0,<4.0.0"  # Use version 3.x to avoid the breaking change
+  - name: community.general
+    version: ">=5.0.0"
+  - name: ansible.posix
+    version: ">=1.0.0"

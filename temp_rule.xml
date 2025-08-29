@@ -1,0 +1,9 @@
+  <rule id="100002" level="12">
+    <if_matched_sid>5715</if_matched_sid>
+    <same_source_ip />
+    <description>SSH brute force SUCCESS: Authentication succeeded from $(srcip) for user $(dstuser) after previous failures</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_success,pci_dss_10.2.5,</group>
+  </rule>

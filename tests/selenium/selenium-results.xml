@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="8.167" timestamp="2025-08-28T11:41:45.246059+01:00" hostname="KAOUTAR"><testcase classname="test_wazuh_dashboard" name="test_dashboard_https" time="3.099" /><testcase time="0.000" /></testsuite></testsuites>

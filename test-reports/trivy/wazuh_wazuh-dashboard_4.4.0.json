@@ -1,0 +1,262 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-08-29T21:17:56.586782155+01:00",
+  "ArtifactName": "wazuh/wazuh-dashboard:4.4.0",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 1398646784,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "20.04",
+      "EOSL": true
+    },
+    "ImageID": "sha256:cd54c9bcbb764981b908e5e1960cf7c492aa8fdbd4dc7206836f54d47d19eb07",
+    "DiffIDs": [
+      "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+      "sha256:12644093f8af7c14708290358e70833b264790d4b0c5b9c8007cc9c860781088",
+      "sha256:310c6cc868d5bf30e46617d7284b6fa52a90895a95e584760f94f447e46581a5",
+      "sha256:0451c934d914ac62cec1d2e747887dae4bba60b6a9235d962a1cc06587230dad",
+      "sha256:eac3151604599c95436638b36bb5721e36446e239ca151e6fd9f9b8ad465c53c",
+      "sha256:0bdffd4fe1a3f17138c65d70562a9ab575e6acda04f5f5e881e9084760feee1b",
+      "sha256:812879e77005ffee837ee39b7a9d04d2a6dbc883439697cb34eaee5d4d4296cd",
+      "sha256:8c3c2138bcaaf3338568ba980d9b5c5dda56bcbe08eabddef266cee9910d171d",
+      "sha256:ce6946565028dd80097cce939e1f0d5ac367c94fd4d353acb6d6481e1f262207",
+      "sha256:ce25b5fce079973489b1e6fb3da23ccf304fc3a00dddcea092e1fb69d47201d2"
+    ],
+    "RepoTags": [
+      "wazuh/wazuh-dashboard:4.4.0"
+    ],
+    "RepoDigests": [
+      "wazuh/wazuh-dashboard@sha256:696e5aa79db2d1a28dc5468eaaa0aed43c63599cf2a8cd5dbf8eff89a97ee518"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2023-04-05T18:02:21.362456822Z",
+      "docker_version": "20.10.21",
+      "history": [
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  ARG RELEASE",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.ref.name=ubuntu",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.version=20.04",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:26Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:20f2ff22b9a8ca9bec5178036c9ebc525a12cd4312daf5d14a9a631a30be20e1 in / "
+        },
+        {
+          "created": "2023-03-08T04:41:27Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:01:26Z",
+          "created_by": "/bin/sh -c #(nop)  ENV USER=wazuh-dashboard GROUP=wazuh-dashboard NAME=wazuh-dashboard INSTALL_DIR=/usr/share/wazuh-dashboard",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:01:26Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PATTERN= CHECKS_PATTERN= CHECKS_TEMPLATE= CHECKS_API= CHECKS_SETUP= EXTENSIONS_PCI= EXTENSIONS_GDPR= EXTENSIONS_HIPAA= EXTENSIONS_NIST= EXTENSIONS_TSC= EXTENSIONS_AUDIT= EXTENSIONS_OSCAP= EXTENSIONS_CISCAT= EXTENSIONS_AWS= EXTENSIONS_GCP= EXTENSIONS_VIRUSTOTAL= EXTENSIONS_OSQUERY= EXTENSIONS_DOCKER= APP_TIMEOUT= API_SELECTOR= IP_SELECTOR= IP_IGNORE= WAZUH_MONITORING_ENABLED= WAZUH_MONITORING_FREQUENCY= WAZUH_MONITORING_SHARDS= WAZUH_MONITORING_REPLICAS=",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:01:40Z",
+          "created_by": "/bin/sh -c apt update \u0026\u0026 apt install -y libnss3-dev fonts-liberation libfontconfig1"
+        },
+        {
+          "created": "2023-04-05T18:01:40Z",
+          "created_by": "/bin/sh -c getent group $GROUP || groupadd -r -g 1000 $GROUP"
+        },
+        {
+          "created": "2023-04-05T18:01:41Z",
+          "created_by": "/bin/sh -c useradd --system             --uid 1000             --no-create-home             --home-dir $INSTALL_DIR             --gid $GROUP             --shell /sbin/nologin             --comment \"$USER user\"             $USER"
+        },
+        {
+          "created": "2023-04-05T18:01:41Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:e9a2a71a970ba846610cc6b2facc40dad60f08bc22e5d32c59c6bea9405a40e9 in / "
+        },
+        {
+          "created": "2023-04-05T18:01:41Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:e5b1912e20c4d92afee6485d3547c28100301f58dd7b620fb9194de42a63d7cc in / "
+        },
+        {
+          "created": "2023-04-05T18:01:41Z",
+          "created_by": "/bin/sh -c chmod 700 /entrypoint.sh"
+        },
+        {
+          "created": "2023-04-05T18:01:42Z",
+          "created_by": "/bin/sh -c chmod 700 /wazuh_app_config.sh"
+        },
+        {
+          "created": "2023-04-05T18:01:42Z",
+          "created_by": "/bin/sh -c chown 1000:1000 /*.sh"
+        },
+        {
+          "created": "2023-04-05T18:02:19Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=1000:1000dir:8f359f58dc4eb38935f37faec0cb8d8e9150c77a9642a0a9911aa5e0c21e1693 in /usr/share/wazuh-dashboard "
+        },
+        {
+          "created": "2023-04-05T18:02:21Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /usr/share/wazuh-dashboard",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:02:21Z",
+          "created_by": "/bin/sh -c #(nop)  USER wazuh-dashboard",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:02:21Z",
+          "created_by": "/bin/sh -c #(nop)  EXPOSE 443",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:02:21Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/entrypoint.sh\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+          "sha256:12644093f8af7c14708290358e70833b264790d4b0c5b9c8007cc9c860781088",
+          "sha256:310c6cc868d5bf30e46617d7284b6fa52a90895a95e584760f94f447e46581a5",
+          "sha256:0451c934d914ac62cec1d2e747887dae4bba60b6a9235d962a1cc06587230dad",
+          "sha256:eac3151604599c95436638b36bb5721e36446e239ca151e6fd9f9b8ad465c53c",
+          "sha256:0bdffd4fe1a3f17138c65d70562a9ab575e6acda04f5f5e881e9084760feee1b",
+          "sha256:812879e77005ffee837ee39b7a9d04d2a6dbc883439697cb34eaee5d4d4296cd",
+          "sha256:8c3c2138bcaaf3338568ba980d9b5c5dda56bcbe08eabddef266cee9910d171d",
+          "sha256:ce6946565028dd80097cce939e1f0d5ac367c94fd4d353acb6d6481e1f262207",
+          "sha256:ce25b5fce079973489b1e6fb3da23ccf304fc3a00dddcea092e1fb69d47201d2"
+        ]
+      },
+      "config": {
+        "Entrypoint": [
+          "/entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "USER=wazuh-dashboard",
+          "GROUP=wazuh-dashboard",
+          "NAME=wazuh-dashboard",
+          "INSTALL_DIR=/usr/share/wazuh-dashboard",
+          "PATTERN=",
+          "CHECKS_PATTERN=",
+          "CHECKS_TEMPLATE=",
+          "CHECKS_API=",
+          "CHECKS_SETUP=",
+          "EXTENSIONS_PCI=",
+          "EXTENSIONS_GDPR=",
+          "EXTENSIONS_HIPAA=",
+          "EXTENSIONS_NIST=",
+          "EXTENSIONS_TSC=",
+          "EXTENSIONS_AUDIT=",
+          "EXTENSIONS_OSCAP=",
+          "EXTENSIONS_CISCAT=",
+          "EXTENSIONS_AWS=",
+          "EXTENSIONS_GCP=",
+          "EXTENSIONS_VIRUSTOTAL=",
+          "EXTENSIONS_OSQUERY=",
+          "EXTENSIONS_DOCKER=",
+          "APP_TIMEOUT=",
+          "API_SELECTOR=",
+          "IP_SELECTOR=",
+          "IP_IGNORE=",
+          "WAZUH_MONITORING_ENABLED=",
+          "WAZUH_MONITORING_FREQUENCY=",
+          "WAZUH_MONITORING_SHARDS=",
+          "WAZUH_MONITORING_REPLICAS="
+        ],
+        "Labels": {
+          "org.opencontainers.image.ref.name": "ubuntu",
+          "org.opencontainers.image.version": "20.04"
+        },
+        "User": "wazuh-dashboard",
+        "WorkingDir": "/usr/share/wazuh-dashboard",
+        "ExposedPorts": {
+          "443/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 75160576,
+        "Digest": "sha256:06d39c85623a79eb68b6cac39f4c4aba8834873ee5fc27be9d9d7655e6313c26",
+        "DiffID": "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f"
+      },
+      {
+        "Size": 55579136,
+        "Digest": "sha256:2d5355629e35cc4cd2d80a6057d3cf0e0e5752106c3e05824170880a16746f57",
+        "DiffID": "sha256:12644093f8af7c14708290358e70833b264790d4b0c5b9c8007cc9c860781088"
+      },
+      {
+        "Size": 6144,
+        "Digest": "sha256:434393ac5a863f69060a05034dec4e9e6cb5004dbbabf5a8fa2e6d534f68a960",
+        "DiffID": "sha256:310c6cc868d5bf30e46617d7284b6fa52a90895a95e584760f94f447e46581a5"
+      },
+      {
+        "Size": 336384,
+        "Digest": "sha256:d6438587181f46a54c5fec11d01926acd7b496ebb762924203a5cb5fb8990059",
+        "DiffID": "sha256:0451c934d914ac62cec1d2e747887dae4bba60b6a9235d962a1cc06587230dad"
+      },
+      {
+        "Size": 2560,
+        "Digest": "sha256:2644deb104117dde7beeafd7d6547c71127e584b0a6d11eb22e7da78f8882379",
+        "DiffID": "sha256:eac3151604599c95436638b36bb5721e36446e239ca151e6fd9f9b8ad465c53c"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:4fbfda448b5e1a04e4af6edfcb1a2d834342cd45d6a15547b4d1042e93810a2a",
+        "DiffID": "sha256:0bdffd4fe1a3f17138c65d70562a9ab575e6acda04f5f5e881e9084760feee1b"
+      },
+      {
+        "Size": 2560,
+        "Digest": "sha256:58b040f8cbf4afae0867e915bbf2ad20ae9bb5e0ec2513522f564504148f5189",
+        "DiffID": "sha256:812879e77005ffee837ee39b7a9d04d2a6dbc883439697cb34eaee5d4d4296cd"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:cd49078a021ead52019ebc049c4bb57a58f6a079e862ecea7692a194924ddc95",
+        "DiffID": "sha256:8c3c2138bcaaf3338568ba980d9b5c5dda56bcbe08eabddef266cee9910d171d"
+      },
+      {
+        "Size": 5120,
+        "Digest": "sha256:aeac46cbe4bfa14c5ba18d617a3ba77a52a3d0ad6963786fb0fb0258b0f38c2b",
+        "DiffID": "sha256:ce6946565028dd80097cce939e1f0d5ac367c94fd4d353acb6d6481e1f262207"
+      },
+      {
+        "Size": 1267547136,
+        "Digest": "sha256:62d019e13d03a2b7f5d6891a941b660d7ac63aaab8190cb1dc8029361229efc3",
+        "DiffID": "sha256:ce25b5fce079973489b1e6fb3da23ccf304fc3a00dddcea092e1fb69d47201d2"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "wazuh/wazuh-dashboard:4.4.0 (ubuntu 20.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu"
+    },
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+format: sarif
+output: trivy-results.sarif
+severity:
+  - CRITICAL
+  - HIGH
+exit-code: 1
+ignore-unfixed: true
+timeout: 10m
+ignorefile: trivy/.trivyignore  # Add this line
+# Remove the vulnerability section

@@ -1,0 +1,280 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-08-29T21:17:54.711697328+01:00",
+  "ArtifactName": "wazuh/wazuh-indexer:4.4.0",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 1644267008,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "20.04",
+      "EOSL": true
+    },
+    "ImageID": "sha256:9f0b411f82a783c5918292a150e9a661d6f3f7db1bdf151eea228e85f205ee21",
+    "DiffIDs": [
+      "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+      "sha256:7d2b1dc3dd0cb022238ac3bfa1763ec1aac25e3e4467a2fe04e1a6133070870c",
+      "sha256:5fe67b10c00174485dcdd63cb13671e19d3843c0ae733ca55416c3d0e5332b21",
+      "sha256:f598cd9cc89961578a99baf295f933a0bdf93b7f5ae57f8b71fc355f36183d0b",
+      "sha256:eb4fb9d3168d71e7c98d416126e47a77b2b0ba1a81f0a6781867d14c6c03ba4d",
+      "sha256:77ae4ea22aa279f960a0b1d405de984829d4b5696eddf36cfd8e5a239291d7a2",
+      "sha256:bafe11375c63220991cfd028b055cf95cbfa0f10201de94ae9e286f308ae89b8",
+      "sha256:8655f5d39e54107bbb28a62a962adf2a573975c2b4f148ed9bf10d6d46de49be",
+      "sha256:2c4e9ca0e7febd9543c042590b2a5735f7a62dc634894b640fa270c25bffecda",
+      "sha256:60648a8dbbb0cc0487082b7a8f421009a818f021b3ac4300f6e411d50f799428",
+      "sha256:87fb4d694ae9fd8a2d25f67fd00b47690e243c93feb34a90c840494dcd593232",
+      "sha256:e48ba59d0329eccd1cdac27c4c6db8d6f8defd42ee77813b286552e7b987ae7a",
+      "sha256:966d1e1b6ac9246303ac926f482c7c74ef830d1f47337021cc5f635a85a7a706",
+      "sha256:120526f17661129c4e970ba83b66fdd1f4ba50fe4138ff321dad587a302f78f6"
+    ],
+    "RepoTags": [
+      "wazuh/wazuh-indexer:4.4.0"
+    ],
+    "RepoDigests": [
+      "wazuh/wazuh-indexer@sha256:278f9527ef806ada935753e6d429f4a24f7e13826ed96c30fa5d6cc0753632be"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "container": "b719673246f68ba01a7e304f5effaf27db8849a83fd3451a199652007767ee76",
+      "created": "2023-04-05T18:00:18.428069072Z",
+      "docker_version": "20.10.21",
+      "history": [
+        {
+          "created": "2023-03-08T04:41:24.616558596Z",
+          "created_by": "/bin/sh -c #(nop)  ARG RELEASE",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24.68146178Z",
+          "created_by": "/bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24.736949919Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.ref.name=ubuntu",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:24.79197019Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.version=20.04",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-03-08T04:41:26.82642813Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:20f2ff22b9a8ca9bec5178036c9ebc525a12cd4312daf5d14a9a631a30be20e1 in / "
+        },
+        {
+          "created": "2023-03-08T04:41:27.109028867Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:00:03.28654606Z",
+          "created_by": "/bin/sh -c #(nop)  ENV USER=wazuh-indexer GROUP=wazuh-indexer NAME=wazuh-indexer INSTALL_DIR=/usr/share/wazuh-indexer",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:00:03.699421517Z",
+          "created_by": "/bin/sh -c getent group $GROUP || groupadd -r -g 1000 $GROUP"
+        },
+        {
+          "created": "2023-04-05T18:00:04.101341468Z",
+          "created_by": "/bin/sh -c useradd --system             --uid 1000             --no-create-home             --home-dir $INSTALL_DIR             --gid $GROUP             --shell /sbin/nologin             --comment \"$USER user\"             $USER"
+        },
+        {
+          "created": "2023-04-05T18:00:04.170541197Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /usr/share/wazuh-indexer"
+        },
+        {
+          "created": "2023-04-05T18:00:04.246731492Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:a96eb3fe83c450f2f4b4bc4beb5a415c741c994bebe8fe9c5018b37baa77972b in / "
+        },
+        {
+          "created": "2023-04-05T18:00:04.326354225Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:71bfd15ebf61916d630d8ec8ae53cc137d8389b6f6cd882c6f69fef77cab9a1d in / "
+        },
+        {
+          "created": "2023-04-05T18:00:04.728407961Z",
+          "created_by": "/bin/sh -c chmod 700 /entrypoint.sh \u0026\u0026 chmod 700 /securityadmin.sh"
+        },
+        {
+          "created": "2023-04-05T18:00:05.10428774Z",
+          "created_by": "/bin/sh -c chown 1000:1000 /*.sh"
+        },
+        {
+          "created": "2023-04-05T18:00:11.504490142Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=1000:1000dir:8a22d9b1824da8bec2ce70dc0c8c22053719078778d6ddbb59a2290f709a5633 in /usr/share/wazuh-indexer "
+        },
+        {
+          "created": "2023-04-05T18:00:11.779737567Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=0:0dir:5bfb5688aab2d19135461d02a33f8beb61166ff335ef7426cbe62e1638208eec in /usr/lib/systemd "
+        },
+        {
+          "created": "2023-04-05T18:00:11.858186092Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=0:0dir:486a02a27a4194ea94b6f046c4c32eb896f060cda3b8736c651d7424b17357ae in /usr/lib/sysctl.d "
+        },
+        {
+          "created": "2023-04-05T18:00:11.957767112Z",
+          "created_by": "/bin/sh -c #(nop) COPY --chown=0:0dir:43dfbf1a9e84bb82f036410ea6b7b7942db54f6dee84263af81c3d87f79f82e5 in /usr/lib/tmpfiles.d "
+        },
+        {
+          "created": "2023-04-05T18:00:17.255385552Z",
+          "created_by": "/bin/sh -c chown -R 1000:1000 /usr/share/wazuh-indexer"
+        },
+        {
+          "created": "2023-04-05T18:00:18.148460142Z",
+          "created_by": "/bin/sh -c mkdir -p /var/lib/wazuh-indexer \u0026\u0026 chown 1000:1000 /var/lib/wazuh-indexer \u0026\u0026     mkdir -p /usr/share/wazuh-indexer/logs \u0026\u0026 chown 1000:1000 /usr/share/wazuh-indexer/logs \u0026\u0026     mkdir -p /run/wazuh-indexer \u0026\u0026 chown 1000:1000 /run/wazuh-indexer \u0026\u0026     mkdir -p /var/log/wazuh-indexer \u0026\u0026 chown 1000:1000 /var/log/wazuh-indexer \u0026\u0026     chmod 700 /usr/share/wazuh-indexer \u0026\u0026     chmod 600 /usr/share/wazuh-indexer/jvm.options \u0026\u0026     chmod 600 /usr/share/wazuh-indexer/opensearch.yml"
+        },
+        {
+          "created": "2023-04-05T18:00:18.216112025Z",
+          "created_by": "/bin/sh -c #(nop)  USER wazuh-indexer",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:00:18.281339156Z",
+          "created_by": "/bin/sh -c #(nop)  EXPOSE 9200",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:00:18.349590318Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/entrypoint.sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-05T18:00:18.428069072Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"opensearchwrapper\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f",
+          "sha256:7d2b1dc3dd0cb022238ac3bfa1763ec1aac25e3e4467a2fe04e1a6133070870c",
+          "sha256:5fe67b10c00174485dcdd63cb13671e19d3843c0ae733ca55416c3d0e5332b21",
+          "sha256:f598cd9cc89961578a99baf295f933a0bdf93b7f5ae57f8b71fc355f36183d0b",
+          "sha256:eb4fb9d3168d71e7c98d416126e47a77b2b0ba1a81f0a6781867d14c6c03ba4d",
+          "sha256:77ae4ea22aa279f960a0b1d405de984829d4b5696eddf36cfd8e5a239291d7a2",
+          "sha256:bafe11375c63220991cfd028b055cf95cbfa0f10201de94ae9e286f308ae89b8",
+          "sha256:8655f5d39e54107bbb28a62a962adf2a573975c2b4f148ed9bf10d6d46de49be",
+          "sha256:2c4e9ca0e7febd9543c042590b2a5735f7a62dc634894b640fa270c25bffecda",
+          "sha256:60648a8dbbb0cc0487082b7a8f421009a818f021b3ac4300f6e411d50f799428",
+          "sha256:87fb4d694ae9fd8a2d25f67fd00b47690e243c93feb34a90c840494dcd593232",
+          "sha256:e48ba59d0329eccd1cdac27c4c6db8d6f8defd42ee77813b286552e7b987ae7a",
+          "sha256:966d1e1b6ac9246303ac926f482c7c74ef830d1f47337021cc5f635a85a7a706",
+          "sha256:120526f17661129c4e970ba83b66fdd1f4ba50fe4138ff321dad587a302f78f6"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "opensearchwrapper"
+        ],
+        "Entrypoint": [
+          "/entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "USER=wazuh-indexer",
+          "GROUP=wazuh-indexer",
+          "NAME=wazuh-indexer",
+          "INSTALL_DIR=/usr/share/wazuh-indexer"
+        ],
+        "Image": "sha256:4453fb52f25443eb68584458d1ec540109e4d3a8476ffb5412e2c618a1b3f31c",
+        "Labels": {
+          "org.opencontainers.image.ref.name": "ubuntu",
+          "org.opencontainers.image.version": "20.04"
+        },
+        "User": "wazuh-indexer",
+        "WorkingDir": "/usr/share/wazuh-indexer",
+        "ExposedPorts": {
+          "9200/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 75160576,
+        "Digest": "sha256:06d39c85623a79eb68b6cac39f4c4aba8834873ee5fc27be9d9d7655e6313c26",
+        "DiffID": "sha256:62789ffcd78ce0eae545b2743541d5c063270fe9f45477acacf2031b93cea70f"
+      },
+      {
+        "Size": 6144,
+        "Digest": "sha256:5f3263cad1985916a584e2def5d083281158c37197b6c3dc94fa0d5a16a10715",
+        "DiffID": "sha256:7d2b1dc3dd0cb022238ac3bfa1763ec1aac25e3e4467a2fe04e1a6133070870c"
+      },
+      {
+        "Size": 336384,
+        "Digest": "sha256:e52e56c688292947a5c53778fb44bbd543aeb976264f67e32e60ec9797efb371",
+        "DiffID": "sha256:5fe67b10c00174485dcdd63cb13671e19d3843c0ae733ca55416c3d0e5332b21"
+      },
+      {
+        "Size": 2560,
+        "Digest": "sha256:575f945fc873a9935d77f4dfd1cd2c7bf2267241df65acb4f36659bca09cefaa",
+        "DiffID": "sha256:f598cd9cc89961578a99baf295f933a0bdf93b7f5ae57f8b71fc355f36183d0b"
+      },
+      {
+        "Size": 5632,
+        "Digest": "sha256:890d1259479b1a157275031cd3afdf71e91043b4ed0abfcf07066157b464c3b8",
+        "DiffID": "sha256:eb4fb9d3168d71e7c98d416126e47a77b2b0ba1a81f0a6781867d14c6c03ba4d"
+      },
+      {
+        "Size": 2048,
+        "Digest": "sha256:aeb3bc27b86f3242f9342988ff7fe250c48dca8b9c58dc73ae35da052b575cc3",
+        "DiffID": "sha256:77ae4ea22aa279f960a0b1d405de984829d4b5696eddf36cfd8e5a239291d7a2"
+      },
+      {
+        "Size": 6656,
+        "Digest": "sha256:e9f2c5e039b558f719fa8ab36c9c150ee4f519347e03550e49cd25ec37691639",
+        "DiffID": "sha256:bafe11375c63220991cfd028b055cf95cbfa0f10201de94ae9e286f308ae89b8"
+      },
+      {
+        "Size": 6656,
+        "Digest": "sha256:f015380cc24d9f904b8e247df4b5a965e1132f522fc33775773d92cad5466d42",
+        "DiffID": "sha256:8655f5d39e54107bbb28a62a962adf2a573975c2b4f148ed9bf10d6d46de49be"
+      },
+      {
+        "Size": 784356864,
+        "Digest": "sha256:693c3b80aa5a3c3ee7e147a7b6c1522430f7da90a18e70747cde7a014c7d250b",
+        "DiffID": "sha256:2c4e9ca0e7febd9543c042590b2a5735f7a62dc634894b640fa270c25bffecda"
+      },
+      {
+        "Size": 6656,
+        "Digest": "sha256:4eaaac315dbe2508c7c4bbfe9af43cdfbdb88328dfbcc25c7f35e73dd494ca10",
+        "DiffID": "sha256:60648a8dbbb0cc0487082b7a8f421009a818f021b3ac4300f6e411d50f799428"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:15488b58e9a584d0ef2b266ef7497a458c69443030ac50c1b755bc30bef922df",
+        "DiffID": "sha256:87fb4d694ae9fd8a2d25f67fd00b47690e243c93feb34a90c840494dcd593232"
+      },
+      {
+        "Size": 3584,
+        "Digest": "sha256:6983e3f1bc00e7b3fdad6b2fd96940e4874e990f177cf79fbc38821c74f9540b",
+        "DiffID": "sha256:e48ba59d0329eccd1cdac27c4c6db8d6f8defd42ee77813b286552e7b987ae7a"
+      },
+      {
+        "Size": 784356864,
+        "Digest": "sha256:b186daa3dae5b1a0afda7a55aed0bb96b1a2a64dcc95f36986cdd5d56570ca99",
+        "DiffID": "sha256:966d1e1b6ac9246303ac926f482c7c74ef830d1f47337021cc5f635a85a7a706"
+      },
+      {
+        "Size": 12800,
+        "Digest": "sha256:ef8895b8fea8e96b23e127b8f99abff210e0002fe279d54e3f396cc2fd5b0e84",
+        "DiffID": "sha256:120526f17661129c4e970ba83b66fdd1f4ba50fe4138ff321dad587a302f78f6"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "wazuh/wazuh-indexer:4.4.0 (ubuntu 20.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu"
+    },
+    {
+      "Target": "Java",
+      "Class": "lang-pkgs",
+      "Type": "jar"
+    }
+  ]
+}
