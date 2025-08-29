@@ -1,2 +1,22 @@
+# SSL Certificates and Private Keys
+config/wazuh_indexer_ssl_certs/
+*.pem
+*.key
+*.crt
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment files
 .env
-.env
+.env.local
+
+# Docker volumes
+**/data/
+**/logs/
+
+# Test artifacts  
+*.xml
+*.json
