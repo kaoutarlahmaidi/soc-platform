@@ -1,0 +1,406 @@
+
+version: '3.8'
+
+services:
+  wazuh-master:
+    image: wazuh/wazuh-manager:4.4.0
+    hostname: wazuh.master
+    environment:
+      - INDEXER_URL=https://wazuh1.indexer:9200
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=${INDEXER_PASSWORD}
+      - FILEBEAT_SSL_VERIFICATION_MODE=certificate
+      - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
+      - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
+      - SSL_KEY=/etc/ssl/filebeat.key
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca-manager.pem
+        target: /etc/ssl/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.master.pem
+        target: /etc/ssl/filebeat.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.master-key.pem
+        target: /etc/ssl/filebeat.key
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_cluster/wazuh_manager.conf
+        target: /wazuh-config-mount/etc/ossec.conf
+        read_only: true
+      - master-wazuh-api:/var/ossec/api
+      - master-wazuh-etc:/var/ossec/etc
+      - master-wazuh-logs:/var/ossec/logs
+      - master-wazuh-queue:/var/ossec/queue
+      - master-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - master-wazuh-integrations:/var/ossec/integrations
+      - master-wazuh-active-response:/var/ossec/active-response/bin
+      - master-wazuh-agentless:/var/ossec/agentless
+      - master-wazuh-wodles:/var/ossec/wodles
+      - master-filebeat-etc:/etc/filebeat
+      - master-filebeat-var:/var/lib/filebeat
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh.master
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  wazuh-worker:
+    image: wazuh/wazuh-manager:4.4.0
+    hostname: wazuh.worker
+    environment:
+      - INDEXER_URL=https://wazuh1.indexer:9200
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=${INDEXER_PASSWORD}
+      - FILEBEAT_SSL_VERIFICATION_MODE=certificate
+      - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
+      - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
+      - SSL_KEY=/etc/ssl/filebeat.key
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca-manager.pem
+        target: /etc/ssl/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.worker.pem
+        target: /etc/ssl/filebeat.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.worker-key.pem
+        target: /etc/ssl/filebeat.key
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_cluster/wazuh_worker.conf
+        target: /wazuh-config-mount/etc/ossec.conf
+        read_only: true
+      - worker-wazuh-api:/var/ossec/api
+      - worker-wazuh-etc:/var/ossec/etc
+      - worker-wazuh-logs:/var/ossec/logs
+      - worker-wazuh-queue:/var/ossec/queue
+      - worker-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - worker-wazuh-integrations:/var/ossec/integrations
+      - worker-wazuh-active-response:/var/ossec/active-response/bin
+      - worker-wazuh-agentless:/var/ossec/agentless
+      - worker-wazuh-wodles:/var/ossec/wodles
+      - worker-filebeat-etc:/etc/filebeat
+      - worker-filebeat-var:/var/lib/filebeat
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh.worker
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  wazuh1-indexer:
+    image: wazuh/wazuh-indexer:4.4.0
+    hostname: wazuh1.indexer
+    environment:
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - bootstrap.memory_lock=true
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - node.name=wazuh1.indexer
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca.pem
+        target: /usr/share/wazuh-indexer/certs/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh1.indexer-key.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh1.indexer.key
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh1.indexer.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh1.indexer.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin.pem
+        target: /usr/share/wazuh-indexer/certs/admin.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin-key.pem
+        target: /usr/share/wazuh-indexer/certs/admin-key.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/wazuh1.indexer.yml
+        target: /usr/share/wazuh-indexer/opensearch.yml
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/internal_users.yml
+        target: /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+        read_only: true
+      - wazuh-indexer-data-1:/var/lib/wazuh-indexer
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh1.indexer
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  wazuh2-indexer:
+    image: wazuh/wazuh-indexer:4.4.0
+    hostname: wazuh2.indexer
+    environment:
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - bootstrap.memory_lock=true
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - node.name=wazuh2.indexer
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca.pem
+        target: /usr/share/wazuh-indexer/certs/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh2.indexer-key.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh2.indexer.key
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh2.indexer.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh2.indexer.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin.pem
+        target: /usr/share/wazuh-indexer/certs/admin.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin-key.pem
+        target: /usr/share/wazuh-indexer/certs/admin-key.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/wazuh2.indexer.yml
+        target: /usr/share/wazuh-indexer/opensearch.yml
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/internal_users.yml
+        target: /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+        read_only: true
+      - wazuh-indexer-data-2:/var/lib/wazuh-indexer
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh2.indexer
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  wazuh3-indexer:
+    image: wazuh/wazuh-indexer:4.4.0
+    hostname: wazuh3.indexer
+    environment:
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - bootstrap.memory_lock=true
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - node.name=wazuh3.indexer
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca.pem
+        target: /usr/share/wazuh-indexer/certs/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh3.indexer-key.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh3.indexer.key
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh3.indexer.pem
+        target: /usr/share/wazuh-indexer/certs/wazuh3.indexer.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin.pem
+        target: /usr/share/wazuh-indexer/certs/admin.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/admin-key.pem
+        target: /usr/share/wazuh-indexer/certs/admin-key.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/wazuh3.indexer.yml
+        target: /usr/share/wazuh-indexer/opensearch.yml
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer/internal_users.yml
+        target: /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+        read_only: true
+      - wazuh-indexer-data-3:/var/lib/wazuh-indexer
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh3.indexer
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  wazuh-dashboard:
+    image: wazuh/wazuh-dashboard:4.4.0
+    hostname: wazuh.dashboard
+    environment:
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=${INDEXER_PASSWORD}
+      - WAZUH_API_URL=https://wazuh.master
+      - API_USERNAME=wazuh-wui
+      - API_PASSWORD=${API_PASSWORD}
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.dashboard.pem
+        target: /usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem
+        target: /usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca.pem
+        target: /usr/share/wazuh-dashboard/certs/root-ca.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_dashboard/opensearch_dashboards.yml
+        target: /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_dashboard/wazuh.yml
+        target: /usr/share/wazuh-dashboard/config/wazuh.yml
+        read_only: true
+    depends_on:
+      - wazuh1-indexer
+    networks:
+      wazuh-network:
+        aliases:
+          - wazuh.dashboard
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+  nginx:
+    image: nginx:stable
+    hostname: nginx
+    ports:
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: ingress
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: ingress
+      - target: 1514
+        published: 1514
+        protocol: tcp
+        mode: ingress
+    volumes:
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.dashboard.pem
+        target: /etc/nginx/certs/wazuh.dashboard.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem
+        target: /etc/nginx/certs/wazuh.dashboard-key.pem
+        read_only: true
+      - type: bind
+        source: /home/kaoutar/soc-challenge/wazuh-docker/multi-node/config/wazuh_indexer_ssl_certs/root-ca.pem
+        target: /etc/nginx/certs/root-ca.pem
+        read_only: true
+    depends_on:
+      - wazuh-master
+      - wazuh-worker
+      - wazuh-dashboard
+    networks:
+      - wazuh-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+
+volumes:
+  master-wazuh-api:
+  master-wazuh-etc:
+  master-wazuh-logs:
+  master-wazuh-queue:
+  master-wazuh-var-multigroups:
+  master-wazuh-integrations:
+  master-wazuh-active-response:
+  master-wazuh-agentless:
+  master-wazuh-wodles:
+  master-filebeat-etc:
+  master-filebeat-var:
+  worker-wazuh-api:
+  worker-wazuh-etc:
+  worker-wazuh-logs:
+  worker-wazuh-queue:
+  worker-wazuh-var-multigroups:
+  worker-wazuh-integrations:
+  worker-wazuh-active-response:
+  worker-wazuh-agentless:
+  worker-wazuh-wodles:
+  worker-filebeat-etc:
+  worker-filebeat-var:
+  wazuh-indexer-data-1:
+  wazuh-indexer-data-2:
+  wazuh-indexer-data-3:
+
+networks:
+  wazuh-network:
+    driver: overlay
+    attachable: true
