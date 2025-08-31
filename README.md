@@ -86,5 +86,6 @@ python tests/selenium/test_wazuh_dashboard.py
 The current implementation is deployed with **Docker Compose** for rapid prototyping and testing.  
 For production scalability and high availability, the repository also contains a `docker-stack.yml` file prepared for **Docker Swarm**.
 
-#### For a complete technical walkthrough, including architecture details, deployment steps, and future migration plans, see the full project documentation: 
+#### For a complete technical walkthrough, including architecture details, deployment steps, and future migration plans, see the full project documentation:
+[Project Report]https://github.com/kaoutarlahmaidi/soc-platform/commit/90f80ab339e42c3fa436117111d2cd534a9d3054
 
