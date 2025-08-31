@@ -87,5 +87,6 @@ The current implementation is deployed with **Docker Compose** for rapid prototy
 For production scalability and high availability, the repository also contains a `docker-stack.yml` file prepared for **Docker Swarm**.
 
 #### For a complete technical walkthrough, including architecture details, deployment steps, and future migration plans, see the full project documentation:
+https://github.com/kaoutarlahmaidi/soc-platform/blob/master/docs/Mini_SOC_Project_Report.pdf.pdf
 
 
